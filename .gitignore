@@ -1,3 +1,10 @@
+###################
+##NODE,BOWER IGNORE
+####################
+node_modules/*
+bower_components/*
+angular-1.4.3/*
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
