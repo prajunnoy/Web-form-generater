@@ -25,31 +25,32 @@
         </select>
 
         <!-- ADD BUTTON -->
-        <input type="button" value="Add +" ng-click="addfield(fields.type); addfield(text)" />
+        <input type="button" value="Add +" ng-click="addfield(fields.type)" />
 
         <!-- SHOW FIELD -->
         <div ng-repeat="field in fields">
             <pre>{{field}}</pre>
             <!-- DROPDOWN FIELD -->
             <div ng-if="field.type == 'dropdown'">
+                <!-- dropdown list -->
                 <input type="text" ng-model="detail" name="" placeholder="Enter text here" />
+                <!-- add dropdown list -->
                 <input type="button" value="Add" ng-click="addDropdown($index,detail)" />
-
+                <!-- create combobox for dropdown-->
                 <br/> Combobox:
                 <select ng-model="detail_drop" ng-options="idx as detail_drop.item for (idx,detail_drop) in field.dropdown_list"></select>
-                <pre>{{detail_drop}}</pre>
+                <!-- remove selected dropdown list -->
                 <button ng-click="removeDropdown($index,detail_drop)">remove</button>
-
+                <!-- remove dropdown field -->
                 <button ng-click="removefield($index)">-</button>
-
             </div>
 
-            <!-- TEXTBOX & RADIO BUTTON-->
-            <div ng-if="field.type=='text' || field.type=='radio' || field.type=='checkbox'">
+            <!-- TEXTBOX AND RADIOBUTTON AND CHECKBOX-->
+            <div ng-if="field.type=='text'">
                 <input type="{{field.type}}" />
+                <input type="text" />
                 <button class="remove" ng-click="removefield($index)">-</button>
             </div>
-
 
         </div>
     </FORM>

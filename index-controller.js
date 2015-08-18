@@ -26,7 +26,6 @@ angular.module('MyApp').controller('IndexController', ['$scope', function ($scop
     // remove combobox in dropdown
     $scope.removeDropdown = function (index, detail_drop) {
         // var last_droplist = $scope.fields.dropdown_list.length - 1;
-        console.log(detail_drop);
         $scope.fields[index].dropdown_list.splice(detail_drop, 1);
     };
 }]);
