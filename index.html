@@ -46,7 +46,7 @@
             </div>
 
             <!-- TEXTBOX AND RADIOBUTTON AND CHECKBOX-->
-            <div ng-if="field.type=='text'">
+            <div ng-if="field.type=='text' || 'radio' || 'checkbox'">
                 <input type="{{field.type}}" />
                 <input type="text" />
                 <button class="remove" ng-click="removefield($index)">-</button>
