@@ -1,0 +1,58 @@
+<html ng-app="MyApp">
+
+<head>
+    <meta charset="utf-8">
+    <title> Generater </title>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/index-controller.js"></script>
+</head>
+
+<body ng-controller="IndexController as ctrl">
+    <!--/////////////////////////----------------------- ADD BUTTON -----------------------/////////////////////////-->
+    <FORM>
+        <H2>add button</H2>
+        <BR/>
+        <pre>{{fields | json}}</pre>
+
+        <!-- SELECT FIELD TO ADD -->
+        <select ng-model="fields.type">
+            <option value="" disabled selected>type</option>
+            <option value="button">Button</option>
+            <option value="dropdown">Dropdown</option>
+            <option value="text">Textbox</option>
+            <option value="radio">Radio</option>
+            <option value="checkbox">Checkbox</option>
+        </select>
+
+        <!-- ADD BUTTON -->
+        <input type="button" value="Add +" ng-click="addfield(fields.type); addfield(text)" />
+
+        <!-- SHOW FIELD -->
+        <div ng-repeat="field in fields">
+            <pre>{{field}}</pre>
+            <!-- DROPDOWN FIELD -->
+            <div ng-if="field.type == 'dropdown'">
+                <input type="text" ng-model="detail" name="" placeholder="Enter text here" />
+                <input type="button" value="Add" ng-click="addDropdown($index,detail)" />
+
+                <br/> Combobox:
+                <select ng-model="detail_drop" ng-options="idx as detail_drop.item for (idx,detail_drop) in field.dropdown_list"></select>
+                <pre>{{detail_drop}}</pre>
+                <button ng-click="removeDropdown($index,detail_drop)">remove</button>
+
+                <button ng-click="removefield($index)">-</button>
+
+            </div>
+
+            <!-- TEXTBOX & RADIO BUTTON-->
+            <div ng-if="field.type=='text' || field.type=='radio' || field.type=='checkbox'">
+                <input type="{{field.type}}" />
+                <button class="remove" ng-click="removefield($index)">-</button>
+            </div>
+
+
+        </div>
+    </FORM>
+</body>
+
+</html>
