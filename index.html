@@ -47,11 +47,11 @@
                 <!-- create combobox for dropdown-->
                 <br/> {{field.label}}:
                 <select ng-model="detail_drop" ng-options="idx as detail_drop.item for (idx,detail_drop) in field.dropdown_list track by detail_drop.item">
-                    <option value="" disabled>{{field.label}}</option>
+                    <option value="" disabled selected>{{field.label}}</option>
                 </select>
-                <!--<span ng-show="Myform.select{{$index}}.$error.required"></span>-->
+
                 <!-- remove selected dropdown list -->
-                <button ng-click="removeDropdown($index,detail_drop)">remove</button>
+                <button ng-click="removeDropdown($index,detail_drop)" ng-disabled="detail_drop===''||detail_drop == undefined">remove</button>
                 <!-- remove dropdown field -->
                 <button ng-click="removefield($index)">-</button>
             </div>
