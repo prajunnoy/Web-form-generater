@@ -5,8 +5,10 @@ angular.module('MyApp').controller('IndexController', ['$scope', function ($scop
     $scope.fields = [];
     // ADD FIELD
     $scope.addfield = function (type) {
+        console.log(type);
         $scope.fields.push({
             type: type,
+            label: "",
             dropdown_list: []
         });
     };
@@ -17,15 +19,23 @@ angular.module('MyApp').controller('IndexController', ['$scope', function ($scop
     };
 
     // DROPDOWN 
-    // add combobox in dropdown
+    // add combobox label
+    $scope.addLabel = function (index, detail_label) {
+        console.log(detail_label);
+        $scope.fields[index].label = detail_label;
+    };
+
+    // add combobox list in dropdown
     $scope.addDropdown = function (index, detail) {
+        console.log(detail);
         $scope.fields[index].dropdown_list.push({
             item: detail
         });
     };
-    // remove combobox in dropdown
+    // remove combobox list in dropdown
     $scope.removeDropdown = function (index, detail_drop) {
         // var last_droplist = $scope.fields.dropdown_list.length - 1;
+        console.log(detail_drop);
         $scope.fields[index].dropdown_list.splice(detail_drop, 1);
     };
 }]);

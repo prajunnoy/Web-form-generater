@@ -9,7 +9,7 @@
 
 <body ng-controller="IndexController as ctrl">
     <!--/////////////////////////----------------------- ADD BUTTON -----------------------/////////////////////////-->
-    <FORM>
+    <form name="Myform">
         <H2>add button</H2>
         <BR/>
         <pre>{{fields | json}}</pre>
@@ -23,24 +23,33 @@
             <option value="radio">Radio</option>
             <option value="checkbox">Checkbox</option>
         </select>
-
-        <!-- ADD BUTTON -->
-        <input type="button" value="Add +" ng-click="addfield(fields.type)" />
+        <!-- ADD FIELD -->
+        <input type="button" value="Add +" ng-click="addfield(fields.type)" ng-disabled="fields.type===''||fields.type == undefined" />
 
         <!-- SHOW FIELD -->
         <div ng-repeat="field in fields">
             <pre>{{field}}</pre>
+
             <!-- DROPDOWN FIELD -->
             <div ng-if="field.type == 'dropdown'">
+                <!-- dropdown Label -->
+                Label:
+                <input type="text" ng-model="detail_label" name="" placeholder="Enter text here" />
+                <!-- add dropdown label (not done) -->
+                <input type="button" value="Add Label" ng-click="addLabel($index,detail_label)" />
+
                 <!-- dropdown list -->
-                <input type="text" ng-model="detail" name="" placeholder="Enter text here" />
+                List Item:
+                <input type="text" ng-model="detail_list" name="" placeholder="Enter text here" />
                 <!-- add dropdown list -->
-                <input type="button" value="Add" ng-click="addDropdown($index,detail)" />
+                <input type="button" value="Add List" ng-click="addDropdown($index,detail_list)" />
+
                 <!-- create combobox for dropdown-->
-                <br/> Combobox:
-                <select ng-model="detail_drop" ng-options="idx as detail_drop.item for (idx,detail_drop) in field.dropdown_list">
-                    <option value=""> -- select -- </option>
+                <br/> {{field.label}}:
+                <select ng-model="detail_drop" ng-options="idx as detail_drop.item for (idx,detail_drop) in field.dropdown_list track by detail_drop.item">
+                    <option value="" disabled>{{field.label}}</option>
                 </select>
+                <!--<span ng-show="Myform.select{{$index}}.$error.required"></span>-->
                 <!-- remove selected dropdown list -->
                 <button ng-click="removeDropdown($index,detail_drop)">remove</button>
                 <!-- remove dropdown field -->
@@ -55,7 +64,7 @@
                 <!-- create radiobutton list -->
                 <br/><pre>{{detail}}</pre>
                 <label ng-repeat="info in field.dropdown_list">
-                    <input type="{{field.type}}" name="list" ng-model="detail_drop"/>{{info.item}} &nbsp;
+                    <input type="{{field.type}}" name="list" ng-model="detail_drop" />{{info.item}} &nbsp;
                 </label>
                 <!-- remove selected radiobutton list (not done) -->
                 <button ng-click="removeDropdown($index,detail_drop)">remove</button>
@@ -64,7 +73,7 @@
             </div>
 
         </div>
-    </FORM>
+    </form>
 </body>
 
 </html>
