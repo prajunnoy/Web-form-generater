@@ -26,10 +26,10 @@ angular.module('MyApp').controller('IndexController', ['$scope', function ($scop
     };
 
     // add combobox list in dropdown
-    $scope.addDropdown = function (index, detail) {
-        console.log(detail);
+    $scope.addDropdown = function (index, detail_list) {
+        console.log(detail_list);
         $scope.fields[index].dropdown_list.push({
-            item: detail
+            item: detail_list
         });
     };
     // remove combobox list in dropdown
